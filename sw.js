@@ -1,6 +1,6 @@
 // Guarda la app en el móvil para que abra aunque no haya cobertura en la obra.
 // La página se pide primero a internet (para recibir mejoras) y, si no hay, se usa la guardada.
-const CACHE = "partes-axfal-202611121628";
+const CACHE = "partes-axfal-202611121649";
 const APP = ["./", "index.html", "manifest.webmanifest", "icono-192.png", "icono-512.png"];
 
 self.addEventListener("install", e => {
@@ -15,7 +15,7 @@ self.addEventListener("fetch", e => {
   const url = new URL(req.url);
   if (url.origin === location.origin) {
     if (req.mode === "navigate" || url.pathname.endsWith("/") || url.pathname.endsWith("index.html")) {
-      e.respondWith(fetch(req).then(r => { if (!r.ok) throw new Error(r.status); const c = r.clone(); caches.open(CACHE).then(k => k.put("index.html", c)); return r; })
+      e.respondWith(fetch(req, { cache: "no-store" }).then(r => { if (!r.ok) throw new Error(r.status); const c = r.clone(); caches.open(CACHE).then(k => k.put("index.html", c)); return r; })
         .catch(() => caches.match("index.html").then(r => r || caches.match("./"))));
     } else {
       e.respondWith(caches.match(req).then(r => r || fetch(req)));
