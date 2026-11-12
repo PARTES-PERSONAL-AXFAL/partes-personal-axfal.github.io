@@ -1,6 +1,6 @@
 // Guarda la app en el móvil para que abra aunque no haya cobertura en la obra.
 // La página se pide primero a internet (para recibir mejoras) y, si no hay, se usa la guardada.
-const CACHE = "partes-axfal-202611121556";
+const CACHE = "partes-axfal-202611121619";
 const APP = ["./", "index.html", "manifest.webmanifest", "icono-192.png", "icono-512.png"];
 
 self.addEventListener("install", e => {
